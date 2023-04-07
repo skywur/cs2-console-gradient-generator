@@ -5,7 +5,7 @@ const fromColor = document.getElementById('fromColor');
 const toColor = document.getElementById('toColor');
 
 // Define the number of gradient steps
-const numSteps = 10;
+let numSteps = 0;
 
 // Define a function to generate the gradient color at a given step
 function getGradientColor(step) {
@@ -43,6 +43,7 @@ function updateLogDiv() {
   // Get the input text and split it into lines
   const inputText = asciiInput.value;
   const lines = inputText.split('\n');
+  numSteps = lines.length;
 
   // Generate the output HTML with the gradient colors
   let outputHTML = `log_color Console ${getGradientColor(0)}FF\n`;
