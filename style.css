@@ -1,0 +1,21 @@
+#asciiInput {
+    width: 100ch;
+    min-height: 300px
+}
+.container p, .container input {
+    display: inline;
+}
+.container {
+    padding-bottom: 20px;
+}
+.fromColorContainer {
+}
+.toColorContainer {
+}
+#submit {
+}
+#logDiv {
+    border: 1px solid black;
+    width: 100ch;
+    min-height: 300px
+}

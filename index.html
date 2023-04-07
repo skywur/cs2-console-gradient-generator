@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Console Art Gradient Generator</title>
+</head>
+<body>
+    <p>Good places for ascii art: <a href="https://textart.sh">https://textart.sh</a>, <a href="https://www.asciiart.eu">https://www.asciiart.eu</a>, <a href="https://ascii.co.uk/art">https://ascii.co.uk</a></p>
+    <textarea id="asciiInput" name="asciiInput">ascii art here</textarea>
+    <p>Note: CS:GO has a maximum character limit per command of 255 (including the echo "").</p>
+    <div class="container fromColorContainer">
+        <p>From color</p>
+        <input type="color" name="fromColor" id="fromColor">
+    </div>
+    
+    <div class="container toColorContainer">
+        <p>To Color</p>
+        <input type="color" name="toColor" id="toColor">
+    </div>
+    
+    
+    <input type="submit" value="Generate" id="submit" onclick="updateLogDiv()">
+
+    <p>Response</p>
+    <pre id="logDiv" onclick="selectText(this.id)"></pre>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
