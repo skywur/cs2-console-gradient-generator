@@ -47,7 +47,9 @@ function updateLogDiv() {
   numSteps = lines.length;
 
   // Generate the output HTML with the gradient colors
-  let outputHTML = `log_color Console ${getGradientColor(0)}FF\n`;
+  let outputHTML = `con_filter_enable 1
+con_filter_text_out "Setting channel"\n`;
+  outputHTML += `log_color Console ${getGradientColor(0)}FF\n`;
   lines.forEach((line, i) => {
     if (i > 0) {
       outputHTML += `log_color Console ${getGradientColor(i - 1)}FF\n`;
