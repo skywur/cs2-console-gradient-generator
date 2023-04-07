@@ -1,4 +1,3 @@
-// warn for lines longer than 255
 // Get the necessary elements from the DOM
 const asciiInput = document.getElementById("asciiInput");
 const logDiv = document.getElementById('logDiv');
