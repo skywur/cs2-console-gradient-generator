@@ -52,7 +52,7 @@ function updateLogDiv() {
     }
     outputHTML += `echo "${line}"\n`;
   });
-
+  outputHTML += `log_color Console FFFFFFFF\n`;
   // Update the log div with the output HTML
   logDiv.innerText = outputHTML;
 }
