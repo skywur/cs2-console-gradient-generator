@@ -1,22 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@media only screen and (max-width: 1600px)  {
+    #asciiInput {
+        width: 70%;
+    }
+    #logDiv {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 800px)  {
+    #asciiInput {
+        width: 80%;
+    }
+    #logDiv {
+        width: 80%;
+    }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: white;
+}
+p {
+    margin: 0;
+    color: white;
+}
+a {
+    color: blue;
+}
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.form-group p {
+    margin-right: 10px;
+    font-weight: bold;
+}
+.color-input {
+    appearance: none;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
 #asciiInput {
-    width: 100ch;
-    min-height: 300px
+    min-width: 50%;
+    min-height: 200px;
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-.container p, .container input {
-    display: inline;
+.btn {
+    display: inline-block;
+    margin: 30px auto 0;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: default;
+    transition: 0.2s;
+    user-select: none;
 }
-.container {
-    padding-bottom: 20px;
+
+.btn:hover {
+    background-color: white;
+    color: #333
 }
-.fromColorContainer {
-}
-.toColorContainer {
-}
-#submit {
-}
+
 #logDiv {
-    border: 1px solid black;
-    width: 100ch;
-    height: 300px;
-    overflow: scroll;
+    min-width: 50%;
+    height: 200px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+.gradientContainer {
+    margin-bottom: 3%;
+}
+
+#gradient {
+    content:'';
+    background:black;
+    position: absolute;
+    width: 50%;
+    height: 2vw;
+    display: block;
+    transform: translateX(-50%);
+
+}
+
+#note {
+    display: none;
+    background: #f49b36;
+    padding: 5px;
+    border-radius: 10px;
+}
+.note p {
+    color:
 }

@@ -3,6 +3,7 @@ const asciiInput = document.getElementById("asciiInput");
 const logDiv = document.getElementById('logDiv');
 const fromColor = document.getElementById('fromColor');
 const toColor = document.getElementById('toColor');
+const gradient = document.getElementById('gradient')
 
 // Define the number of gradient steps
 let numSteps = 0;
@@ -55,6 +56,9 @@ con_filter_text_out "Setting channel"\n`;
       outputHTML += `log_color Console ${getGradientColor(i - 1)}FF\n`;
     }
     outputHTML += `echo "${line}"\n`;
+    if (line.length > 200) {
+      document.getElementById('note').style.display = "block";
+    }
   });
   outputHTML += `log_color Console FFFFFFFF\n`;
   // Update the log div with the output HTML
@@ -85,52 +89,23 @@ function selectText(id){
 	}
 }
 
-function download(strData, strFileName, strMimeType) {
-    var D = document,
-        A = arguments,
-        a = D.createElement("a"),
-        d = A[0],
-        n = A[1],
-        t = A[2] || "text/plain";
-
-    //build download link:
-    a.href = "data:" + strMimeType + "charset=utf-8," + strData;
-
-
-    if (window.MSBlobBuilder) { // IE10
-        var bb = new MSBlobBuilder();
-        bb.append(strData);
-        return navigator.msSaveBlob(bb, strFileName);
-    } /* end if(window.MSBlobBuilder) */
-
-
-
-    if ('download' in a) { //FF20, CH19
-        a.setAttribute("download", n);
-        a.innerHTML = "downloading...";
-        D.body.appendChild(a);
-        setTimeout(function() {
-            var e = D.createEvent("MouseEvents");
-            e.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            a.dispatchEvent(e);
-            D.body.removeChild(a);
-        }, 66);
-        return true;
-    }; /* end if('download' in a) */
-
-
-
-    //do iframe dataURL download: (older W3)
-    var f = D.createElement("iframe");
-    D.body.appendChild(f);
-    f.src = "data:" + (A[2] ? A[2] : "application/octet-stream") + (window.btoa ? ";base64" : "") + "," + (window.btoa ? window.btoa : escape)(strData);
-    setTimeout(function() {
-        D.body.removeChild(f);
-    }, 333);
-    return true;
+function randomizeColors() {
+  var letters = '0123456789ABCDEF';
+  var randomColor = '#';
+  var randomColor2 = '#';
+  for (var i = 0; i < 6; i++) {
+    randomColor += letters[Math.floor(Math.random() * 16)];
+    randomColor2 += letters[Math.floor(Math.random() * 16)];
+  }
+  fromColor.value = randomColor;
+  toColor.value = randomColor2;
+  gradient.style.background = `linear-gradient(to right, ${fromColor.value}, ${toColor.value})`
+  updateLogDiv();
 }
 
-function downloadCfg() {
-    download(`${logDiv.innerText}`, 'gradient.cfg', 'text/plain');
-    console.log(logDiv.innerText);
-}
+fromColor.addEventListener('input', function() {
+  gradient.style.background = `linear-gradient(to right, ${fromColor.value}, ${toColor.value})`
+ });
+toColor.addEventListener('input', function() {
+  gradient.style.background = `linear-gradient(to right, ${fromColor.value}, ${toColor.value})`
+ });
