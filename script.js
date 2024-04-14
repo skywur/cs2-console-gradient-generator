@@ -47,46 +47,54 @@ function updateLogDiv() {
   const lines = inputText.split('\n');
   numSteps = lines.length;
 
+  // Find the length of the longest line
+  const maxLength = Math.max(...lines.map(line => line.length));
+
+  // Initialize the output HTML
+  outputHTML = '';
+
   // Generate the output HTML with the gradient colors
-  let outputHTML = `con_filter_enable 1
-con_filter_text_out "Setting channel"\n`;
-  outputHTML += `log_color Console ${getGradientColor(0)}FF\n`;
+  outputHTML += `log_color Console ${getGradientColor(0)}FF | grep \n`;
   lines.forEach((line, i) => {
     if (i > 0) {
-      outputHTML += `log_color Console ${getGradientColor(i - 1)}FF\n`;
+      outputHTML += `log_color Console ${getGradientColor(i - 1)}FF | grep \n`;
     }
+
+    // If the line is shorter than the longest line, append spaces to the end of it
+    while (line.length < maxLength) {
+      line += ' ';
+    }
+
     outputHTML += `echo "${line}"\n`;
     if (line.length > 200) {
       document.getElementById('note').style.display = "block";
     }
   });
-  outputHTML += `log_color Console FFFFFFFF\n`;
+  outputHTML += `log_color Console FFFFFFFF | grep\n`;
+
   // Update the log div with the output HTML
   logDiv.innerText = outputHTML;
 }
 
 
-function selectText(id){
-	var sel, range;
-	var el = document.getElementById(id); //get element id
-	if (window.getSelection && document.createRange) { //Browser compatibility
-	  sel = window.getSelection();
-	  if(sel.toString() == ''){ //no text selection
-		 window.setTimeout(function(){
-			range = document.createRange(); //range object
-			range.selectNodeContents(el); //sets Range
-			sel.removeAllRanges(); //remove all ranges from selection
-			sel.addRange(range);//add Range to a Selection.
-		},1);
-	  }
-	}else if (document.selection) { //older ie
-		sel = document.selection.createRange();
-		if(sel.text == ''){ //no text selection
-			range = document.body.createTextRange();//Creates TextRange object
-			range.moveToElementText(el);//sets Range
-			range.select(); //make selection.
-		}
-	}
+function copyToClipboard() {
+  const el = document.createElement('textarea');
+  el.value = document.getElementById('logDiv').innerText;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+
+  // Get the copy button
+  const copyBtn = document.querySelector('.copy-btn');
+
+  // Add the animate class
+  copyBtn.classList.add('animate');
+
+  // Remove the animate class when the animation ends
+  copyBtn.addEventListener('animationend', () => {
+    copyBtn.classList.remove('animate');
+  });
 }
 
 function randomizeColors() {

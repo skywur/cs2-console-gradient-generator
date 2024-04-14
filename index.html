@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Console Art Gradient Generator</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
     <div class="wrapper">
@@ -28,12 +27,12 @@
         <div class="buttons">
             <div type="submit" class="btn" onclick="updateLogDiv()">Generate</div>
             <div type="submit" class="btn" onclick="randomizeColors()">Randomize</div>
+            <div type="submit" class="btn copy-btn" onclick="copyToClipboard()">Copy to Clipboard</div>
         </div>
 
         <pre id="logDiv" onclick="selectText(this.id)"></pre>
         <p>Copy and place in a csgo .cfg file to print it to the console</p>
     </div>
-
 
     <script src="script.js"></script>
 </body>

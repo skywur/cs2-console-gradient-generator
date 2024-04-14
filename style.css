@@ -103,6 +103,22 @@ a {
     background-color: white;
     color: #333
 }
+@keyframes gradientFlash {
+    0% {
+      background-position: 100% 0;
+      color: #333;
+    }
+    100% {
+      background-position: 0 100%;
+      color: #333;
+    }
+  }
+  
+  .copy-btn.animate {
+    background: linear-gradient(-45deg, white,rgb(220, 106, 255), white);
+    background-size: 300% 300%;
+    animation: gradientFlash 1s ease-in-out;
+  }
 
 #logDiv {
     min-width: 50%;
